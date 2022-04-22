@@ -7,14 +7,14 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.types import Message
 from keep_alive import keep_alive
 
-TOKEN = os.environ('TOKEN')
+token = ('bot_token')
 dp = Dispatcher()
 
 characters = list(string.ascii_letters + string.digits + '!@#$%^&*()')
 
 @dp.message(commands={"start"})
 async def command_start_handler(message: Message) -> None:
-    await message.answer(f'Hello, <b>{message.from_user.full_name}!</b>\nI can generate a password for you\nPlease send me the password length by message')
+    await message.answer(f'Привет, <b>{message.from_user.full_name}!</b>\nЯ могу генерировать пароли\nОтправь мне желаемую длину пароля')
 
 
 @dp.message()
@@ -34,7 +34,7 @@ def generate_password(length: int):
     return ''.join(password)
 
 def main() -> None:
-    bot = Bot(TOKEN, parse_mode='HTML')
+    bot = Bot(token, parse_mode='HTML')
     dp.run_polling(bot)
 
 
